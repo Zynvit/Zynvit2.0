@@ -1,0 +1,45 @@
+.messageAndFollowButton {
+  background-color: var(--primaryColor);
+  padding: 10px;
+  border-radius: 5px;
+  flex: 1;
+  border: 2px solid var(--primaryColor);
+}
+
+.profileImageCircle {
+  width: 90px;
+  height: 90px;
+  border-radius: 45px;
+  border: 2px solid var(--whiteColor);
+}
+
+.profileVerifiedCircle {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: var(--primaryColor);
+  margin-left: 10px;
+}
+
+.tabIndicator {
+  height: 2px;
+  align-self: stretch;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.menu {
+  --border-radius: 5px;
+  --width: 120px;
+  --max-width: 120px;
+  --offset-x: -5px;
+  --offset-y: -15px;
+  --backdrop-opacity: 0;
+}
+
+.likeFollowAndFollowing {
+  align-self: stretch;
+  margin: 20px;
+  margin-bottom: 5px;
+  justify-content: space-between;
+}

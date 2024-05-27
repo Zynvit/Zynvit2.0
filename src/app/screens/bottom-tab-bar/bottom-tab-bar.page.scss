@@ -1,0 +1,16 @@
+ion-tab-bar{
+  --background: var(--blackColor);
+  height: 60px;
+  box-shadow: 0 1px 8px rgba(204, 204, 204,0.3);
+}
+
+ion-tab-button{
+  --color:var(--grayColor);
+  --color-selected:var(--whiteColor);
+};
+
+ion-text{
+  font-size: 12px;
+  margin-top: 5px;
+  font-weight: 600;
+ }

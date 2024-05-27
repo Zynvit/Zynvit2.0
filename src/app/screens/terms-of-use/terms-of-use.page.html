@@ -1,0 +1,26 @@
+<ion-header mode="ios" [translucent]="false">
+  <ion-toolbar color="blackColor">
+    <div class="center" style="position: relative; padding: 15px">
+      <ion-text
+        class="whiteColor20Bold ellipseText"
+        style="-webkit-line-clamp: 1; max-width: 80%"
+      >
+        Terms of Use
+      </ion-text>
+      <ion-icon
+        (click)="goBack()"
+        name="arrow-back"
+        color="whiteColor"
+        style="font-size: 24px; position: absolute; left: 5px"
+      ></ion-icon>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="blackColor">
+  <div class="column" *ngFor="let item of termsOfUseList" style="margin: 0 10px;">
+    <ion-text class="grayColor16Regular" style="line-height: 20px; text-align: justify;margin-top: 15px;">
+      {{item}}
+    </ion-text>
+  </div>
+</ion-content>

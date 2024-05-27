@@ -1,0 +1,279 @@
+<ion-header [translucent]="false">
+  <ion-toolbar color="blackColor">
+    <div style="display: flex; justify-content: flex-end; padding: 20px 13px">
+      <ion-icon
+        id="openMenu"
+        name="ellipsis-vertical"
+        color="whiteColor"
+        style="font-size: 20px"
+      ></ion-icon>
+      <ion-popover
+        mode="md"
+        #popover
+        trigger="openMenu"
+        alignment="left"
+        class="menu"
+      >
+        <ng-template>
+          <div
+            class="column margin20"
+            style="background-color: var(--whiteColor)"
+          >
+            <div
+              (click)="popover.dismiss();goTo('profile-settings')"
+              class="rowAlignCenter"
+            >
+              <span
+                class="material-icons"
+                style="
+                  font-size: 20px;
+                  color: var(--blackColor);
+                  margin-right: 10px;
+                "
+              >
+                person_outline
+              </span>
+              <ion-text class="blackColor14Bold"> Profile Setting </ion-text>
+            </div>
+
+            <div
+              (click)="popover.dismiss();"
+              class="rowAlignCenter"
+              style="margin: 25px 0"
+            >
+              <span
+                class="material-icons"
+                style="
+                  font-size: 20px;
+                  color: var(--blackColor);
+                  margin-right: 10px;
+                "
+              >
+                share
+              </span>
+              <ion-text class="blackColor14Bold"> Share Profile </ion-text>
+            </div>
+
+            <div
+              (click)="popover.dismiss();goTo('terms-of-use')"
+              class="rowAlignCenter"
+            >
+              <span
+                class="material-icons"
+                style="
+                  font-size: 20px;
+                  color: var(--blackColor);
+                  margin-right: 10px;
+                "
+              >
+                vpn_key
+              </span>
+              <ion-text class="blackColor14Bold"> Terms of Use </ion-text>
+            </div>
+
+            <div
+              (click)="popover.dismiss();"
+              class="rowAlignCenter"
+              style="margin: 25px 0"
+            >
+              <span
+                class="material-icons"
+                style="
+                  font-size: 20px;
+                  color: var(--blackColor);
+                  margin-right: 10px;
+                "
+              >
+                star
+              </span>
+              <ion-text class="blackColor14Bold"> Rate App </ion-text>
+            </div>
+
+            <div
+              (click)="popover.dismiss();showLogoutDialog=true"
+              class="rowAlignCenter"
+            >
+              <span
+                class="material-icons"
+                style="
+                  font-size: 20px;
+                  color: var(--blackColor);
+                  margin-right: 10px;
+                "
+              >
+                logout
+              </span>
+              <ion-text class="blackColor14Bold"> Logout </ion-text>
+            </div>
+          </div>
+        </ng-template>
+      </ion-popover>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content
+  color="blackColor"
+  [fullscreen]="true"
+  [scrollEvents]="true"
+  (ionScroll)="handleScroll($any($event))"
+>
+  <div class="columnAlignCenter" style="margin: 20px; margin-top: 5px">
+    <ion-img
+      src="../../../assets/images/user_profile/user_3.jpg"
+      class="imageOverflow profileImageCircle"
+    ></ion-img>
+
+    <ion-text class="whiteColor17SemiBold" style="margin: 10px">
+      Allison Perry
+    </ion-text>
+
+    <div class="rowAlignCenter" style="align-self: stretch; margin: 10px 70px">
+      <div (click)="goTo('edit-profile')" class="center borderButton">
+        <ion-text
+          class="whiteColor15SemiBold ellipseText"
+          style="-webkit-line-clamp: 1"
+        >
+          Edit Profile
+        </ion-text>
+      </div>
+      <ion-img
+        src="../../../assets/images/insta.png"
+        style="width: 30px; height: 30px; object-fit: contain"
+      >
+      </ion-img>
+    </div>
+
+    <div class="row likeFollowAndFollowing">
+      <div class="columnAlignCenter" style="flex: 1">
+        <ion-text class="whiteColor16Bold"> 5.5m </ion-text>
+        <ion-text class="grayColor14Regular" style="margin-top: 3px">
+          Likes
+        </ion-text>
+      </div>
+      <div class="columnAlignCenter" style="flex: 1">
+        <ion-text class="whiteColor16Bold"> 2.3m </ion-text>
+        <ion-text class="grayColor14Regular" style="margin-top: 3px">
+          Followers
+        </ion-text>
+      </div>
+      <div class="columnAlignCenter" style="flex: 1">
+        <ion-text class="whiteColor16Bold"> 59 </ion-text>
+        <ion-text class="grayColor14Regular" style="margin-top: 3px">
+          Following
+        </ion-text>
+      </div>
+    </div>
+  </div>
+
+  <div
+    [slot]="scrollValue>=270?'fixed':''"
+    [style.top]="scrollValue>=270?'0px':null"
+    class="row"
+    style="width: 100%; background-color: var(--blackColor)"
+  >
+    <div
+      (click)="selectedTabIndex= 0"
+      class="columnAlignCenter"
+      style="flex: 1"
+    >
+      <span
+        class="material-icons"
+        style="font-size: 25px; color: var(--whiteColor)"
+      >
+        dashboard
+      </span>
+      <div
+        class="tabIndicator"
+        [style.background]="selectedTabIndex===0?'var(--whiteColor)':'transparent'"
+      ></div>
+    </div>
+    <div
+      (click)="selectedTabIndex= 1"
+      class="columnAlignCenter"
+      style="flex: 1"
+    >
+      <span
+        class="material-icons"
+        style="font-size: 25px; color: var(--whiteColor)"
+      >
+        favorite_outline
+      </span>
+      <div
+        class="tabIndicator"
+        [style.background]="selectedTabIndex===1?'var(--whiteColor)':'transparent'"
+      ></div>
+    </div>
+    <div
+      (click)="selectedTabIndex= 2"
+      class="columnAlignCenter"
+      style="flex: 1"
+    >
+      <span
+        class="material-icons"
+        style="font-size: 25px; color: var(--whiteColor)"
+      >
+        bookmark_outline
+      </span>
+      <div
+        class="tabIndicator"
+        [style.background]="selectedTabIndex===2?'var(--whiteColor)':'transparent'"
+      ></div>
+    </div>
+  </div>
+
+  <div>
+    <ion-grid [fixed]="true" style="--ion-grid-padding: 0px">
+      <ion-row>
+        <ion-col
+          style="--ion-grid-column-padding: 2px"
+          size="4"
+          *ngFor="let item of selectedTabIndex==0? postsImagesList:selectedTabIndex==1?favoriteImagesList:bookmarkedImagesList"
+        >
+          <ion-img
+            [src]="item.image"
+            class="imageOverflow"
+            style="width: 100%; height: 130px; border-radius: 5px"
+          ></ion-img>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-modal
+    mode="md"
+    [isOpen]="showLogoutDialog"
+    (didDismiss)="showLogoutDialog=false"
+    #modalCtrl
+  >
+    <ng-template>
+      <div class="margin20" style="margin-top: 25px">
+        <ion-text
+          class="blackColor18Bold"
+          style="display: flex; justify-content: center"
+        >
+          You sure want to logout?
+        </ion-text>
+        <div
+          class="row"
+          style="margin: 10px; margin-top: 25px; justify-content: space-between"
+        >
+          <div
+            (click)="showLogoutDialog=false;"
+            class="center smallButton"
+            style="background-color: var(--grayColor); margin-right: 10px"
+          >
+            <ion-text class="blackColor16Bold"> Cancel </ion-text>
+          </div>
+          <div
+            (click)="showLogoutDialog=false;modalCtrl.dismiss();goTo('/auth/login') "
+            class="center smallButton"
+            style="background-color: var(--primaryColor); margin-left: 10px"
+          >
+            <ion-text class="whiteColor16Bold"> Log out </ion-text>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ion-modal>
+</ion-content>

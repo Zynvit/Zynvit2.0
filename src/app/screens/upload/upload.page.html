@@ -1,0 +1,103 @@
+<ion-header mode="ios" [translucent]="false">
+  <ion-toolbar color="blackColor" style="height: 0"> </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" scrollY="false">
+  <div style="height: 100%; position: relative">
+    <ion-img
+      src="../../../assets/images/ronaldo.png"
+      class="imageOverflow"
+      style="width: 100%; height: 100%"
+    >
+    </ion-img>
+
+    <ion-icon
+      name="close"
+      color="blackColor"
+      class="closeButton"
+      (click)="goBack()"
+    >
+    </ion-icon>
+
+    <div *ngIf="!selectFilter" class="bottomOverlay">
+      <div class="column center" style="position: relative">
+        <div
+          (click)="selectFilter=true"
+          class="center circle70"
+          style="background-color: var(--primaryColor)"
+        >
+          <span
+            class="material-icons"
+            style="font-size: 30px; color: var(--whiteColor)"
+          >
+            videocam
+          </span>
+        </div>
+
+        <div class="rowAlignCenter" style="margin-top: 15px">
+          <span
+            class="material-icons"
+            style="color: var(--whiteColor); font-size: 20px"
+          >
+            keyboard_arrow_up
+          </span>
+          <ion-text class="whiteColor16Regular" style="margin-left: 5px">
+            Swipe up for gallery
+          </ion-text>
+        </div>
+
+        <span class="material-icons albumIcon"> photo_album </span>
+      </div>
+    </div>
+
+    <div *ngIf="selectFilter" class="filterWrapper">
+      <div class="horizontalScroll" style="padding: 0 5px">
+        <div *ngFor="let item of coverColorsList" style="display: inline-block">
+          <div class="filterOptionsWrapper">
+            <ion-img
+              src="../../../assets/images/ronaldo.png"
+              class="imageOverflow"
+              style="width: 100px; height: 130px; border-radius: 10px"
+            >
+            </ion-img>
+            <div class="filterOverlay" [style.background]="item"></div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="rowAlignCenter"
+        style="justify-content: space-between; margin: 20px 10px"
+      >
+        <div
+          class="rowAlignCenter"
+          style="
+            background-color: var(--blackColor);
+            padding: 10px;
+            border-radius: 8px;
+          "
+        >
+          <span
+            class="material-icons"
+            style="font-size: 22px; color: var(--whiteColor)"
+          >
+            music_note
+          </span>
+          <ion-text class="whiteColor16Bold" style="margin-left: 5px">
+            Add Music
+          </ion-text>
+        </div>
+        <div
+          (click)="goTo('post')"
+          style="
+            background-color: var(--blackColor);
+            padding: 10px 25px;
+            border-radius: 8px;
+          "
+        >
+          <ion-text class="whiteColor16Bold"> Next </ion-text>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

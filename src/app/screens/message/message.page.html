@@ -1,0 +1,77 @@
+<ion-header mode="ios" [translucent]="false">
+  <ion-toolbar color="blackColor">
+    <div class="center" style="position: relative; padding: 15px">
+      <ion-text
+        class="whiteColor20Bold ellipseText"
+        style="-webkit-line-clamp: 1; max-width: 80%"
+      >
+        Ellison Perry
+      </ion-text>
+      <ion-icon
+        (click)="goBack()"
+        name="arrow-back"
+        color="whiteColor"
+        style="font-size: 24px; position: absolute; left: 5px"
+      ></ion-icon>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="blackColor">
+  <div style="margin: 0 10px">
+    <div
+      *ngFor="let item of messagesList"
+      style="display: flex; flex-direction: column; margin: 10px"
+      [style.align-items]="item.isSender?'flex-end':'flex-start'"
+    >
+      <div
+        class="messageWrapper"
+        [style.background]="item.isSender?'var(--primaryColor)':'var(--whiteColor)'"
+      >
+        <ion-text
+          style="white-space: pre-line"
+          [class]="item.isSender? 'whiteColor16Regular':'primaryColor16Regular'"
+        >
+          {{item.message}}
+        </ion-text>
+      </div>
+      <div class="rowAlignCenter" style="margin-top: 3px">
+        <ion-icon
+          *ngIf="item.isSender"
+          [name]="item.isSeen?'checkmark-done-sharp':'checkmark-sharp'"
+          color="blueColor"
+          style="font-size: 15px; margin-right: 2px"
+        ></ion-icon>
+        <ion-text class="lightGrayColor13Regular"> {{item.time}} </ion-text>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer mode="md">
+  <form>
+    <div
+      class="footer"
+      [style.padding-bottom]="platform.is('ios')?'20px':'10px'"
+    >
+      <ion-textarea
+        #textArea
+        [(ngModel)]="newMsg"
+        [ngModelOptions]="{standalone: true}"
+        mode="ios"
+        placeholder="Type a message"
+        class="whiteColor14Regular messageField"
+        autoGrow="true"
+        rows="1"
+      ></ion-textarea>
+
+      <div (click)="addMessage()" class="center circle44">
+        <ion-icon
+          name="send"
+          color="yellowColor"
+          style="font-size: 20px"
+        ></ion-icon>
+      </div>
+    </div>
+  </form>
+</ion-footer>

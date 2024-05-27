@@ -1,0 +1,126 @@
+<ion-header [translucent]="false" class="ion-no-border">
+  <ion-toolbar color="bodyBackColor">
+    <div>
+      <div class="rowAlignCenter" style="margin: 20px 0">
+        <ion-text
+          (click)="notificationsSelected=true"
+          [class]="notificationsSelected? 'whiteColor18Bold':'grayColor16Regular'"
+          style="margin: 0 10px"
+        >
+          Notifications
+        </ion-text>
+        <div style="position: relative">
+          <ion-text
+            (click)="notificationsSelected=false"
+            [class]="!notificationsSelected? 'whiteColor18Bold':'grayColor16Regular'"
+            style="margin: 0 10px"
+          >
+            Messages
+          </ion-text>
+          <div *ngIf="notificationsSelected" class="messageBedge"></div>
+        </div>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div *ngIf="notificationsSelected">
+    <div *ngFor="let item of notificationsList;let i=index;">
+      <div class="divider"></div>
+      <div
+        (click)="goTo('video-maker-profile')"
+        class="rowAlignCenter"
+        style="
+          justify-content: space-between;
+          margin: 0 10px;
+          margin-bottom: 18px;
+        "
+      >
+        <div class="rowAlignCenter" style="flex: 1">
+          <ion-img
+            [src]="item.profileImageOfOther"
+            class="imageOverflow"
+            style="width: 40px; height: 40px; border-radius: 20px"
+          >
+          </ion-img>
+          <div class="column" style="flex: 1; margin: 0 10px">
+            <ion-text
+              class="whiteColor14Bold ellipseText"
+              style="-webkit-line-clamp: 1"
+            >
+              {{item.nameOfOther}}
+            </ion-text>
+            <ion-text
+              class="lightGrayColor13Regular ellipseText"
+              style="-webkit-line-clamp: 1; margin-top: 5px"
+            >
+              {{item.isLiked ? 'liked' : 'commented'}} your video.
+              {{item.timeOfResponse}}
+            </ion-text>
+          </div>
+        </div>
+        <div style="position: relative">
+          <ion-img
+            [src]="item.post"
+            class="imageOverflow"
+            style="width: 40px; height: 50px; border-radius: 5px"
+          >
+          </ion-img>
+          <div class="center commentLikeCircle">
+            <span
+              class="material-icons"
+              style="font-size: 13px; color: var(--whiteColor)"
+            >
+              {{item.isLiked ? "favorite" : 'mode_comment'}}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!notificationsSelected">
+    <div *ngFor="let item of messagesList">
+      <div class="divider"></div>
+      <div
+        (click)="goTo('message')"
+        class="rowAlignCenter"
+        style="
+          justify-content: space-between;
+          margin: 0 10px;
+          margin-bottom: 18px;
+        "
+      >
+        <div class="rowAlignCenter" style="flex: 1">
+          <ion-img
+            [src]="item.profileImageOfSender"
+            class="imageOverflow"
+            style="width: 40px; height: 40px; border-radius: 20px"
+          >
+          </ion-img>
+          <div class="column" style="flex: 1; margin: 0 10px">
+            <div class="rowAlignCenter">
+              <ion-text
+                class="whiteColor14Bold ellipseText"
+                style="-webkit-line-clamp: 1; max-width: 90%"
+              >
+                {{item.nameOfSender}}
+              </ion-text>
+              <div *ngIf="item.isReadable" class="unreadBedge"></div>
+            </div>
+            <ion-text
+              class="lightGrayColor13Regular ellipseText"
+              style="-webkit-line-clamp: 1; margin-top: 5px"
+            >
+              {{item.lastMessage}}
+            </ion-text>
+          </div>
+        </div>
+        <ion-text class="lightGrayColor13Regular">
+          {{item.receiveTime}}
+        </ion-text>
+      </div>
+    </div>
+  </div>
+</ion-content>

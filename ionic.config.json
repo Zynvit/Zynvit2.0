@@ -1,0 +1,8 @@
+{
+  "name": "ionic-TikStar",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "bb1b71a3"
+}

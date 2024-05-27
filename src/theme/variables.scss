@@ -1,0 +1,44 @@
+:root {
+  --ion-color-primary: #f44336;
+  --primaryColor: #f44336;
+  --whiteColor: #ffffff;
+  --blackColor: #000000;
+  --grayColor: #cccccc;
+  --darkPinkColor: #fe2b54;
+  --bodyBackColor: #212121;
+  --yellowColor: #ff9800;
+  --lightGreenColor: #b2ff59;
+  --lightGrayColor: #757575;
+  --blueColor: #448aff;
+}
+
+.ion-color-primaryColor {
+  --ion-color-base: var(--primaryColor);
+}
+.ion-color-blackColor {
+  --ion-color-base: var(--blackColor);
+}
+.ion-color-whiteColor {
+  --ion-color-base: var(--whiteColor);
+}
+.ion-color-grayColor {
+  --ion-color-base: var(--grayColor);
+}
+.ion-color-darkPinkColor {
+  --ion-color-base: var(--darkPinkColor);
+}
+.ion-color-bodyBackColor {
+  --ion-color-base: var(--bodyBackColor);
+}
+.ion-color-yellowColor {
+  --ion-color-base: var(--yellowColor);
+}
+.ion-color-lightGreenColor {
+  --ion-color-base: var(--lightGreenColor);
+}
+.ion-color-lightGrayColor {
+  --ion-color-base: var(--lightGrayColor);
+}
+.ion-color-blueColor {
+  --ion-color-base: var(--blueColor);
+}

@@ -1,0 +1,63 @@
+<ion-content [fullscreen]="true">
+  <ion-content class="shadow">
+    <ion-icon
+      (click)="goBack()"
+      name="arrow-back"
+      color="whiteColor"
+      style="font-size: 24px; margin: 20px"
+      [style.margin-top]="platform.is('android')?'20px':'60px'"
+    >
+    </ion-icon>
+    <div class="column" style="margin: 20px; margin-top: 20px">
+      <ion-text class="whiteColor30Bold"> Register</ion-text>
+      <ion-text class="whiteColor17Medium" style="margin-top: 5px;"> Create account </ion-text>
+    </div>
+
+    <div style="margin: 20px; overflow: hidden; margin-top: 50px">
+      <ion-input
+        mode="ios"
+        placeholder="Username"
+        class="txtField whiteColor14Bold"
+        color="primaryColor"
+      ></ion-input>
+    </div>
+
+    <div style="margin:20px; overflow: hidden">
+      <ion-input
+        mode="ios"
+        placeholder="Email"
+        type="email"
+        class="txtField whiteColor14Bold"
+        color="primaryColor"
+      ></ion-input>
+    </div>
+
+    <div style="margin: 20px; overflow: hidden">
+      <ion-input
+        mode="ios"
+        placeholder="Password"
+        type="password"
+        class="txtField whiteColor14Bold"
+        color="primaryColor"
+      ></ion-input>
+    </div>
+
+    <div style="margin:20px; overflow: hidden">
+      <ion-input
+        mode="ios"
+        placeholder="Confirm Password"
+        type="password"
+        class="txtField whiteColor14Bold"
+        color="primaryColor"
+      ></ion-input>
+    </div>
+
+    <div
+      (click)="goTo('/auth/verification')"
+      class="center margin20 gradientButton"
+      style="margin-top: 40px"
+    >
+      <ion-text class="whiteColor16Bold"> Continue </ion-text>
+    </div>
+  </ion-content>
+</ion-content>

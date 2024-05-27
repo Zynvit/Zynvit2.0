@@ -1,0 +1,341 @@
+<ion-header mode="ios" [translucent]="false">
+  <ion-toolbar color="blackColor">
+    <div class="center" style="position: relative; padding: 15px">
+      <ion-text
+        class="whiteColor20Bold ellipseText"
+        style="-webkit-line-clamp: 1; max-width: 80%"
+      >
+        Edit Profile
+      </ion-text>
+      <ion-icon
+        (click)="goBack()"
+        name="arrow-back"
+        color="whiteColor"
+        style="font-size: 24px; position: absolute; left: 5px"
+      ></ion-icon>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="blackColor">
+  <div class="center column margin20" style="margin: 30px">
+    <div style="position: relative">
+      <ion-img
+        src="../../../assets/images/user_profile/user_3.jpg"
+        class="imageOverflow"
+        style="width: 110px; height: 110px; border-radius: 55px"
+      >
+      </ion-img>
+      <div class="center profileImageOverlay">
+        <span
+          id="open-action-sheet"
+          class="material-icons"
+          style="font-size: 27px; color: var(--whiteColor)"
+        >
+          add_a_photo
+        </span>
+      </div>
+    </div>
+    <ion-text class="whiteColor21SemiBold" style="margin-top: 15px">
+      Allison Perry
+    </ion-text>
+  </div>
+
+  <div class="margin20">
+    <div class="rowAlignCenter" style="justify-content: space-between">
+      <div class="column" style="flex: 1">
+        <ion-text class="whiteColor16Bold" style="margin-bottom: 2px;"> Phone Number </ion-text>
+        <ion-text class="grayColor14Regular" style="margin-top: 5px">
+          {{filnalPhoneNumber}}
+        </ion-text>
+      </div>
+      <span
+        (click)="phoneNumber=filnalPhoneNumber; showPhoneDialog=true"
+        class="material-icons"
+        style="color: var(--grayColor); font-size: 22px"
+      >
+        edit
+      </span>
+    </div>
+    <div class="divider"></div>
+  </div>
+
+  <div class="margin20">
+    <div class="rowAlignCenter" style="justify-content: space-between">
+      <div class="column" style="flex: 1">
+        <ion-text class="whiteColor16Bold" style="margin-bottom: 2px;"> Email </ion-text>
+        <ion-text class="grayColor14Regular" style="margin-top: 5px">
+          {{finalEmail}}
+        </ion-text>
+      </div>
+      <span
+        (click)="email=finalEmail; showEmailDialog=true"
+        class="material-icons"
+        style="color: var(--grayColor); font-size: 22px"
+      >
+        edit
+      </span>
+    </div>
+    <div class="divider"></div>
+  </div>
+
+  <div class="margin20">
+    <div class="rowAlignCenter" style="justify-content: space-between">
+      <div class="column" style="flex: 1">
+        <ion-text class="whiteColor16Bold" style="margin-bottom: 2px;"> Password </ion-text>
+        <ion-text class="grayColor14Regular" style="margin-top: 5px">
+          ******
+        </ion-text>
+      </div>
+      <span
+        (click)="password=''; showPasswordDialog=true"
+        class="material-icons"
+        style="color: var(--grayColor); font-size: 22px"
+      >
+        edit
+      </span>
+    </div>
+    <div class="divider"></div>
+  </div>
+
+  <div class="margin20">
+    <div class="rowAlignCenter" style="justify-content: space-between">
+      <div class="column" style="flex: 1">
+        <ion-text class="whiteColor16Bold" style="margin-bottom: 2px;"> Instagram Url </ion-text>
+        <ion-text class="grayColor14Regular" style="margin-top: 5px">
+          {{finalUrl}}
+        </ion-text>
+      </div>
+      <span
+        (click)="url=finalUrl; showUrlDialog=true"
+        class="material-icons"
+        style="color: var(--grayColor); font-size: 22px"
+      >
+        edit
+      </span>
+    </div>
+    <div class="divider"></div>
+  </div>
+
+  <ion-modal
+    mode="md"
+    [isOpen]="showPhoneDialog"
+    (didDismiss)="showPhoneDialog=false"
+  >
+    <ng-template>
+      <div class="margin20" style="margin-top: 30px">
+        <ion-text
+          class="blackColor18Bold"
+          style="display: flex; justify-content: center"
+        >
+          Change Phone Number
+        </ion-text>
+        <div style="margin-top: 30px; margin-bottom: 20px">
+          <ion-input
+            [(ngModel)]="phoneNumber"
+            name="phoneNumber"
+            placeholder="Phone Number"
+            mode="ios"
+            class="blackColor14Bold"
+            style="height: 20px; min-height: 20px"
+            inputmode="numeric"
+          >
+          </ion-input>
+          <div class="divider"></div>
+        </div>
+
+        <div class="row" style="margin: 10px; justify-content: space-between">
+          <div
+            (click)="showPhoneDialog=false;"
+            class="center smallButton"
+            style="background-color: var(--grayColor); margin-right: 10px"
+          >
+            <ion-text class="blackColor16Bold"> Cancel </ion-text>
+          </div>
+          <div
+            (click)="showPhoneDialog=false; filnalPhoneNumber=phoneNumber"
+            class="center smallButton"
+            style="background-color: var(--primaryColor); margin-left: 10px"
+          >
+            <ion-text class="whiteColor16Bold"> Okay </ion-text>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal
+    mode="md"
+    [isOpen]="showEmailDialog"
+    (didDismiss)="showEmailDialog=false"
+  >
+    <ng-template>
+      <div class="margin20" style="margin-top: 30px">
+        <ion-text
+          class="blackColor18Bold"
+          style="display: flex; justify-content: center"
+        >
+          Change Email
+        </ion-text>
+        <div style="margin-top: 30px; margin-bottom: 20px">
+          <ion-input
+            [(ngModel)]="email"
+            name="email"
+            placeholder="Email"
+            mode="ios"
+            class="blackColor14Bold"
+            style="height: 20px; min-height: 20px"
+            inputmode="email"
+          >
+          </ion-input>
+          <div class="divider"></div>
+        </div>
+
+        <div class="row" style="margin: 10px; justify-content: space-between">
+          <div
+            (click)="showEmailDialog=false;"
+            class="center smallButton"
+            style="background-color:var(--grayColor); margin-right: 10px"
+          >
+            <ion-text class="blackColor16Bold"> Cancel </ion-text>
+          </div>
+          <div
+            (click)="showEmailDialog=false; finalEmail=email"
+            class="center smallButton"
+            style="background-color: var(--primaryColor); margin-left: 10px"
+          >
+            <ion-text class="whiteColor16Bold"> Okay </ion-text>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal
+    mode="md"
+    [isOpen]="showPasswordDialog"
+    (didDismiss)="showPasswordDialog=false"
+  >
+    <ng-template>
+      <div class="margin20" style="margin-top: 30px">
+        <ion-text
+          class="blackColor18Bold"
+          style="display: flex; justify-content: center"
+        >
+          Change Your Password
+        </ion-text>
+        <div style="margin-top: 30px; margin-bottom: 20px">
+          <ion-input
+            placeholder="Old Password"
+            mode="ios"
+            class="blackColor14Bold"
+            style="height: 20px; min-height: 20px"
+            inputmode="password"
+            type="password"
+          >
+          </ion-input>
+          <div class="divider"></div>
+        </div>
+
+        <div style="margin-bottom: 20px">
+          <ion-input
+            [(ngModel)]="password"
+            name="password"
+            placeholder="New Password"
+            mode="ios"
+            class="blackColor14Bold"
+            style="height: 20px; min-height: 20px"
+            inputmode="password"
+            type="password"
+          >
+          </ion-input>
+          <div class="divider"></div>
+        </div>
+
+        <div style="margin-bottom: 20px">
+          <ion-input
+            placeholder="Confirm New Password"
+            mode="ios"
+            class="blackColor14Bold"
+            style="height: 20px; min-height: 20px"
+            inputmode="password"
+            type="password"
+          >
+          </ion-input>
+          <div class="divider"></div>
+        </div>
+
+        <div class="row" style="margin: 10px; justify-content: space-between">
+          <div
+            (click)="showPasswordDialog=false;"
+            class="center smallButton"
+            style="background-color:var(--grayColor); margin-right: 10px"
+          >
+            <ion-text class="blackColor16Bold"> Cancel </ion-text>
+          </div>
+          <div
+            (click)="showPasswordDialog=false; finalPassword=password"
+            class="center smallButton"
+            style="background-color: var(--primaryColor); margin-left: 10px"
+          >
+            <ion-text class="whiteColor16Bold"> Okay </ion-text>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal
+    mode="md"
+    [isOpen]="showUrlDialog"
+    (didDismiss)="showUrlDialog=false"
+  >
+    <ng-template>
+      <div class="margin20" style="margin-top: 30px">
+        <ion-text
+          class="blackColor18Bold"
+          style="display: flex; justify-content: center"
+        >
+          Change Instagram Url
+        </ion-text>
+        <div style="margin-top: 30px; margin-bottom: 20px">
+          <ion-input
+            [(ngModel)]="url"
+            name="url"
+            placeholder="Enter Instagram Url"
+            mode="ios"
+            class="blackColor14Bold"
+            style="height: 20px; min-height: 20px"
+          >
+          </ion-input>
+          <div class="divider"></div>
+        </div>
+
+        <div class="row" style="margin: 10px; justify-content: space-between">
+          <div
+            (click)="showUrlDialog=false;"
+            class="center smallButton"
+            style="background-color: var(--grayColor); margin-right: 10px"
+          >
+            <ion-text class="blackColor16Bold"> Cancel </ion-text>
+          </div>
+          <div
+            (click)="showUrlDialog=false; finalUrl=url"
+            class="center smallButton"
+            style="background-color: var(--primaryColor); margin-left: 10px"
+          >
+            <ion-text class="whiteColor16Bold"> Okay </ion-text>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ion-modal>
+
+  <ion-action-sheet
+    mode="ios"
+    class="my-custom-class"
+    trigger="open-action-sheet"
+    header="Choose Options"
+    [buttons]="actionSheetButtons"
+  ></ion-action-sheet>
+</ion-content>

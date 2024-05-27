@@ -1,0 +1,70 @@
+<ion-content [fullscreen]="true">
+  <ion-content class="shadow">
+    <div
+      class="column"
+      style="margin: 20px"
+      [style.margin-top]="platform.is('android')?'30px':'30px'"
+    >
+      <ion-img
+      src="../../../../assets/images/zynvit.png"
+      style="width: 200px; height: 100px; object-fit: contain"
+    >
+    </ion-img>
+    
+    </div>
+
+    <div style="margin: 20px; margin-top: 130px">
+      <div style="margin: 10px 0; margin-bottom: 0">
+        <input
+          type="tel"
+          id="phone"
+          [style.width]="(screenWidh-40)+'px'"
+        />
+      </div>
+    </div>
+
+    <div
+      (click)="goTo('/auth/register')"
+      class="center margin20 gradientButton"
+      style="margin-top: 50px;margin-bottom: 15px;"
+    >
+      <ion-text class="whiteColor16Bold"> Continue </ion-text>
+    </div>
+
+    <ion-text
+      class="whiteColor16Regular center"
+      style="text-align: center;"
+    >
+      We’ll send otp for verification
+    </ion-text>
+
+    <div class="center rowAlignCenter margin20 facebookButton" style="margin-bottom: 40px;">
+      <ion-img
+        src="../../../../assets/images/facebook.png"
+        style="width: 28px; height: 28px; object-fit: contain"
+      >
+      </ion-img>
+      <ion-text class="whiteColor16Bold" style="margin-left: 20px">
+        Log in with Facebook
+      </ion-text>
+    </div>
+
+    <div
+      class="center rowAlignCenter margin20"
+      style="
+        background-color: var(--whiteColor);
+        border-radius: 25px;
+        padding: 10px;
+      "
+    >
+      <ion-img
+        src="../../../../assets/images/google.png"
+        style="width: 28px; height: 28px; object-fit: contain"
+      >
+      </ion-img>
+      <ion-text class="blackColor16Bold" style="margin-left: 20px">
+        Log in with Google
+      </ion-text>
+    </div>
+  </ion-content>
+</ion-content>

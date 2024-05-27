@@ -1,0 +1,38 @@
+ion-content::part(background) {
+  background: url("../../../../assets/images/bg.jpg") no-repeat center center /
+    cover;
+}
+
+.shadow::part(background) {
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0.1, 0, 0.7),
+    var(--blackColor)
+  );
+}
+
+.facebookButton {
+  margin-top: 60px;
+  background-color: #3b5998;
+  border-radius: 25px;
+  padding: 10px;
+}
+
+input:not(.country-search) {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-width: 0px;
+  padding: 15px 0;
+  outline-style: none;
+  caret-color: var(--primaryColor);
+  flex: 1;
+  border-radius: 30px;
+  color: var(--whiteColor);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+input::placeholder {
+  color: var(--whiteColor);
+  font-size: 15px;
+  font-weight: 700;
+}

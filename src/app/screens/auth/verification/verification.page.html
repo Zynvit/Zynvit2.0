@@ -1,0 +1,54 @@
+<ion-content [fullscreen]="true">
+  <ion-content class="shadow">
+    <ion-icon
+      (click)="goBack()"
+      name="arrow-back"
+      color="whiteColor"
+      style="font-size: 24px; margin: 20px"
+      [style.margin-top]="platform.is('android')?'20px':'70px'"
+    >
+    </ion-icon>
+    <div class="column" style="margin: 20px; margin-top: 20px">
+      <ion-text class="whiteColor30Bold"> Verification </ion-text>
+      <ion-text class="whiteColor17Medium" style="margin-top: 5px;">
+        Enter the otp code from the phone we just sent you
+      </ion-text>
+    </div>
+
+    <ng-otp-input (onInputChange)="onChange($event)" [config]="config">
+    </ng-otp-input>
+
+    <ion-text class="grayColor16Regular" style="margin: 20px">
+      Didn’t receive otp code!
+      <ion-text class="whiteColor18Bold"> Resend </ion-text>
+    </ion-text>
+
+    <div
+      (click)="onContinue()"
+      class="center margin20 gradientButton"
+      style="margin-top: 40px"
+    >
+      <ion-text class="whiteColor16Bold"> Submit </ion-text>
+    </div>
+
+    <ion-modal
+      mode="md"
+      [isOpen]="showLoadingDialog"
+      style="--width: 85%; --min-width: 85%;"
+      (didDismiss)="showLoadingDialog = false"
+    >
+      <ng-template>
+        <div class="dialogWrapper">
+          <ion-spinner
+            name="lines-sharp"
+            color="primaryColor"
+            style="transform: scale(1.7); margin-top: 10px"
+          ></ion-spinner>
+          <ion-text class="lightGrayColor16Regular" style="margin-top: 30px">
+            Please wait..
+          </ion-text>
+        </div>
+      </ng-template>
+    </ion-modal>
+  </ion-content>
+</ion-content>

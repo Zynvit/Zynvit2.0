@@ -1,0 +1,242 @@
+<ion-content
+  [fullscreen]="true"
+  color="blackColor"
+  overflow-scroll="true"
+  scrollY="false"
+>
+  <div
+    class="center"
+    slot="fixed"
+    style="position: absolute; left: 0; right: 0; z-index: 100"
+    [style.top]="platform.is('ios')?'70px':'30px'"
+  >
+    <ion-text
+      (click)="pauseCurrentVido(); toggleRelatedPost(true);playTrendyVideo()"
+      [class]="relatedPost? 'whiteColor18Bold':'whiteColor17Medium'"
+    >
+      Related
+    </ion-text>
+    <div class="verticalDivider"></div>
+    <ion-text
+      (click)="pauseTrendyVideo(); toggleRelatedPost(false);  playCurrentVideo();"
+      [class]="!relatedPost? 'whiteColor18Bold':'whiteColor17Medium'"
+    >
+      For You
+    </ion-text>
+  </div>
+
+  <div
+    *ngIf="relatedPost"
+    class="columnAlignCenter center"
+    style="height: 100%"
+  >
+    <div class="columnAlignCenter" style="margin-bottom: 20px">
+      <ion-text class="whiteColor21SemiBold"> Trendy creators </ion-text>
+      <ion-text
+        class="grayColor15Regular"
+        style="text-align: center; margin-top: 10px"
+      >
+        Follow to an account to discover its<br />Latest videos here.
+      </ion-text>
+    </div>
+
+    <div style="width: 100%">
+      <swiper-container
+        #horizontalSwiper
+        class="trendy"
+        initial-slide="0"
+        slides-per-view="1.35"
+        centered-slides="true"
+        space-between="30"
+        lazy-preload-prev-next="2"
+        (slidechange)="horizontalSlideChangeCall()"
+      >
+        <swiper-slide *ngFor="let item of trendyCreatorsList;let i=index;">
+          <div class="horizontalSwiperWrapper">
+            <video
+              #horizontalVideo
+              id="horizontalVideo{{i}}"
+              width="100%"
+              height="100%"
+              playsinline
+              loop
+              style="object-fit: fill; height: 100%"
+            >
+              <source [src]="item.videoUrl" type="video/mp4" />
+            </video>
+            <div style="position: absolute; bottom: 0; left: 0; right: 0">
+              <div class="columnAlignCenter">
+                <ion-img
+                  [src]="item.profilePicture"
+                  class="imageOverflow"
+                  style="width: 60px; height: 60px; border-radius: 30px"
+                >
+                </ion-img>
+                <ion-text class="whiteColor16Regular" style="margin: 5px 0">
+                  Nanotechnology
+                </ion-text>
+                <ion-text class="whiteColor15Regular"></ion-text>
+              </div>
+              <div class="center followButton">
+                <ion-text class="whiteColor16Bold"> Play </ion-text>
+              </div>
+            </div>
+            <ion-icon
+              name="close"
+              color="whiteColor"
+              class="closeIcon"
+            ></ion-icon>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+  </div>
+
+  <swiper-container
+    #swiper
+    class="mySwiper"
+    direction="vertical"
+    (slidechange)="slideChangeCall()"
+  >
+    <swiper-slide
+      *ngFor="let item of postsList; let i = index"
+      (click)="toggleVideo(i)"
+    >
+      <video
+        #video
+        *ngIf="!relatedPost"
+        id="video{{i}}"
+        width="100%"
+        height="100%"
+        playsinline
+        loop
+        style="object-fit: fill; height: 100%"
+      >
+        <source [src]="item.videoUrl" type="video/mp4" />
+      </video>
+      <ion-icon
+        *ngIf="!item.isPlay &&!relatedPost"
+        name="play"
+        color="whiteColor"
+        class="playArrow"
+      >
+      </ion-icon>
+      <div *ngIf="!relatedPost" class="column postDetailWrapper">
+        <div class="columnAlignCenter" style="align-self: flex-end">
+          <div class="center" style="position: relative; margin-bottom: 30px">
+            <ion-img
+              (click)="$event.stopPropagation();pauseCurrentVido(); goTo('video-maker-profile')"
+              class="circle50 imageOverflow"
+              style="border: 2px solid var(--whiteColor)"
+              [src]="item.profilePicture"
+            ></ion-img>
+            <div
+              class="center circle20"
+              style="
+                position: absolute;
+                background-color: var(--primaryColor);
+                bottom: -8px;
+              "
+            >
+              <span
+                class="material-icons"
+                style="font-size: 18px; color: var(--whiteColor)"
+              >
+                add
+              </span>
+            </div>
+          </div>
+
+          <div class="columnAlignCenter">
+            <span
+              (click)="$event.stopPropagation();item.isLike=!item.isLike"
+              class="material-icons"
+              style="font-size: 26px"
+              [style.color]="item.isLike?'var(--darkPinkColor)':'var(--whiteColor)'"
+            >
+              favorite
+            </span>
+            <ion-text class="whiteColor14Regular" style="margin-top: 5px">
+              {{item.postLikes}}
+            </ion-text>
+          </div>
+
+          <div class="columnAlignCenter" style="margin: 25px 0">
+            <ion-icon
+              name="chatbox-ellipses"
+              color="whiteColor"
+              style="font-size: 24px"
+            >
+            </ion-icon>
+            <ion-text class="whiteColor14Regular" style="margin-top: 5px">
+              {{item.postComments}}
+            </ion-text>
+          </div>
+
+          <div class="columnAlignCenter">
+            <ion-icon
+              name="arrow-redo"
+              color="whiteColor"
+              style="font-size: 24px"
+            >
+            </ion-icon>
+            <ion-text class="whiteColor14Regular" style="margin-top: 5px">
+              Share
+            </ion-text>
+          </div>
+        </div>
+
+        <div
+          class="row"
+          style="justify-content: space-between; align-items: end"
+        >
+          <div
+            class="column"
+            style="flex: 1; margin-bottom: 40px; align-items: flex-start"
+          >
+            <ion-text
+              class="whiteColor15Regular ellipseText"
+              style="-webkit-line-clamp: 1; text-align: left"
+            >
+              @{{item.postUserName}}
+            </ion-text>
+            <div class="column" style="align-items: flex-start; margin: 10px 0">
+              <ion-text
+                class="whiteColor16Regular ellipseText"
+                style="-webkit-line-clamp: 2; text-align: left"
+              >
+                {{item.postDescription}}
+              </ion-text>
+              <ion-text class="whiteColor15Regular">
+                See the translation
+              </ion-text>
+            </div>
+            <div class="rowAlignCenter">
+              <span
+                class="material-icons"
+                style="font-size: 16px; color: var(--whiteColor)"
+              >
+                music_note
+              </span>
+              <ion-text
+                class="whiteColor16Regular ellipseText"
+                style="-webkit-line-clamp: 1; flex: 1; text-align: left"
+              >
+                {{item.postSongName}}
+              </ion-text>
+            </div>
+          </div>
+          <div
+            class="center circle45"
+            style="background-color: var(--bodyBackColor)"
+          >
+            <ion-img
+              class="spin circle30 imageOverflow"
+              [src]="item.postSongImage"
+            ></ion-img>
+          </div>
+        </div>
+      </div>
+    </swiper-slide>
+  </swiper-container>
+</ion-content>

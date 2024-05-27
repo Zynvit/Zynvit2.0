@@ -1,0 +1,58 @@
+.textfield {
+  --placeholder-color: var(--grayColor);
+  --placeholder-opacity: 1;
+  flex: 1;
+  margin-left: 10px;
+}
+
+.bannerOverlay {
+  background-color: rgba(0, 0, 0, 0.45);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 10px;
+}
+
+.createNowButton {
+  background-color: var(--yellowColor);
+  padding: 8px 20px;
+  border-radius: 30px;
+  align-self: flex-start;
+}
+
+.pagination {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 100;
+}
+
+.circle40 {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+
+.poster {
+  margin: 0 5px;
+  width: 80px;
+  height: 100px;
+  border-radius: 10px;
+}
+
+.searchFieldWrapper {
+  background-color: var(--blackColor);
+  border-radius: 25px;
+  padding: 3px 15px;
+  margin: 15px 10px;
+}
+#videoContainer {
+  position: absolute;
+  height: 200px;
+  z-index: 100; /* Ajuste el valor según sea necesario */
+  display: none;
+}

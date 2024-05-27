@@ -1,0 +1,199 @@
+<ion-header [translucent]="false">
+  <ion-toolbar color="blackColor">
+    <div
+      class="rowAlignCenter"
+      style="justify-content: space-between; padding: 20px 13px"
+    >
+      <ion-icon
+        name="arrow-back"
+        color="whiteColor"
+        style="font-size: 24px"
+        (click)="goBack()"
+      ></ion-icon>
+      <ion-icon
+        id="openMenu"
+        name="ellipsis-vertical"
+        color="whiteColor"
+        style="font-size: 20px"
+      ></ion-icon>
+      <ion-popover
+        mode="md"
+        #popover
+        trigger="openMenu"
+        alignment="left"
+        class="menu"
+      >
+        <ng-template>
+          <div
+            class="column margin20"
+            style="background-color: var(--whiteColor)"
+          >
+            <ion-text (click)="popover.dismiss();" class="blackColor14Bold">
+              Report
+            </ion-text>
+            <ion-text
+              (click)="popover.dismiss();"
+              class="blackColor14Bold"
+              style="margin-top: 30px"
+            >
+              Block
+            </ion-text>
+          </div>
+        </ng-template>
+      </ion-popover>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content
+  color="blackColor"
+  [fullscreen]="true"
+  [scrollEvents]="true"
+  (ionScroll)="handleScroll($any($event))"
+>
+  <div class="columnAlignCenter" style="margin: 20px; margin-top: 5px">
+    <ion-img
+      src="../../../assets/images/spook.png"
+      class="imageOverflow profileImageCircle"
+    ></ion-img>
+
+    <div class="rowAlignCenter" style="margin: 10px">
+      <ion-text class="whiteColor17SemiBold"> Sara Ali Khan </ion-text>
+      <div class="center profileVerifiedCircle">
+        <span
+          class="material-icons"
+          style="color: var(--whiteColor); font-size: 15px"
+        >
+          done
+        </span>
+      </div>
+    </div>
+
+    <div class="rowAlignCenter" style="align-self: stretch; margin: 10px 20px">
+      <div (click)="goTo('message')" class="center messageAndFollowButton">
+        <ion-text
+          class="whiteColor15SemiBold ellipseText"
+          style="-webkit-line-clamp: 1"
+        >
+          Message
+        </ion-text>
+      </div>
+      <div
+        (click)="isFollow=!isFollow"
+        class="center messageAndFollowButton"
+        style="background-color: var(--blackColor); margin: 0 15px"
+      >
+        <ion-text
+          class="whiteColor15SemiBold ellipseText"
+          style="-webkit-line-clamp: 1"
+        >
+          {{isFollow ? 'Unfollow' : 'Follow'}}
+        </ion-text>
+      </div>
+      <ion-img
+        src="../../../assets/images/insta.png"
+        style="width: 30px; height: 30px; object-fit: contain"
+      >
+      </ion-img>
+    </div>
+
+    <ion-text class="whiteColor16Bold" style="margin-top: 10px">
+      Bollywood Actress
+    </ion-text>
+
+    <div class="row likeFollowAndFollowing">
+      <div class="columnAlignCenter" style="flex: 1">
+        <ion-text class="whiteColor16Bold"> 5.5m </ion-text>
+        <ion-text class="grayColor14Regular" style="margin-top: 3px">
+          Likes
+        </ion-text>
+      </div>
+      <div class="columnAlignCenter" style="flex: 1">
+        <ion-text class="whiteColor16Bold"> 2.3m </ion-text>
+        <ion-text class="grayColor14Regular" style="margin-top: 3px">
+          Followers
+        </ion-text>
+      </div>
+      <div class="columnAlignCenter" style="flex: 1">
+        <ion-text class="whiteColor16Bold"> 59 </ion-text>
+        <ion-text class="grayColor14Regular" style="margin-top: 3px">
+          Following
+        </ion-text>
+      </div>
+    </div>
+  </div>
+
+  <div
+    [slot]="scrollValue>=300?'fixed':''"
+    [style.top]="scrollValue>=300?'0px':null"
+    class="row"
+    style="width: 100%; background-color: var(--blackColor)"
+  >
+    <div
+      (click)="selectedTabIndex= 0"
+      class="columnAlignCenter"
+      style="flex: 1"
+    >
+      <span
+        class="material-icons"
+        style="font-size: 25px; color: var(--whiteColor)"
+      >
+        dashboard
+      </span>
+      <div
+        class="tabIndicator"
+        [style.background]="selectedTabIndex===0?'var(--whiteColor)':'transparent'"
+      ></div>
+    </div>
+    <div
+      (click)="selectedTabIndex= 1"
+      class="columnAlignCenter"
+      style="flex: 1"
+    >
+      <span
+        class="material-icons"
+        style="font-size: 25px; color: var(--whiteColor)"
+      >
+        favorite_outline
+      </span>
+      <div
+        class="tabIndicator"
+        [style.background]="selectedTabIndex===1?'var(--whiteColor)':'transparent'"
+      ></div>
+    </div>
+    <div
+      (click)="selectedTabIndex= 2"
+      class="columnAlignCenter"
+      style="flex: 1"
+    >
+      <span
+        class="material-icons"
+        style="font-size: 25px; color: var(--whiteColor)"
+      >
+        bookmark_outline
+      </span>
+      <div
+        class="tabIndicator"
+        [style.background]="selectedTabIndex===2?'var(--whiteColor)':'transparent'"
+      ></div>
+    </div>
+  </div>
+
+  <div>
+    <ion-grid [fixed]="true" style="--ion-grid-padding: 0px">
+      <ion-row>
+        <ion-col
+          style="--ion-grid-column-padding: 2px"
+          size="4"
+          *ngFor="let item of selectedTabIndex==0? postsImagesList:selectedTabIndex==1?favoriteImagesList:bookmarkedImagesList"
+        >
+          <ion-img
+            [src]="item.image"
+            class="imageOverflow"
+            style="width: 100%; height: 130px; border-radius: 5px"
+          ></ion-img>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

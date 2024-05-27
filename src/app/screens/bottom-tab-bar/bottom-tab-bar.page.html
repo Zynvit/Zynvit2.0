@@ -1,0 +1,32 @@
+<ion-tabs>
+  <ion-tab-bar slot="bottom" mode="md" *ngIf="showTabs">
+    <ion-tab-button tab="search">
+      <span class="material-icons" style="font-size: 27px">home</span>
+      <ion-text mode="md"> Home </ion-text>
+    </ion-tab-button>
+
+    <ion-tab-button tab="home">
+      <span class="material-icons" style="font-size: 27px">search</span>
+      <ion-text> Discover </ion-text>
+    </ion-tab-button>
+
+    <ion-tab-button tab="upload">
+      <ion-img
+        src="../../../assets/images/plus-icon.png"
+        style="width: 50px; height: 50px; object-fit: contain"
+      ></ion-img>
+    </ion-tab-button>
+
+    <ion-tab-button tab="shareApp">
+      <span class="material-icons" style="font-size: 27px">
+        notifications_none
+      </span>
+      <ion-text mode="md"> Share</ion-text>
+    </ion-tab-button>
+
+    <ion-tab-button tab="profile">
+      <span class="material-icons" style="font-size: 27px">person</span>
+      <ion-text mode="md"> Me </ion-text>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

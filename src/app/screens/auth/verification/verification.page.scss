@@ -1,0 +1,28 @@
+ion-content::part(background) {
+  background: url("../../../../assets/images/bg.jpg") no-repeat center center /
+    cover;
+}
+
+.shadow::part(background) {
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0.1, 0, 0.7),
+    var(--blackColor)
+  );
+}
+
+::ng-deep .each_input:focus {
+  outline-style: solid;
+  outline-color: var(--primaryColor);
+  outline-width: 2px;
+  caret-color: var(--primaryColor);
+}
+
+.dialogWrapper {
+  background-color: var(--whiteColor);
+  padding: 20px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

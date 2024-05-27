@@ -1,0 +1,92 @@
+<ion-header mode="ios" [translucent]="false">
+  <ion-toolbar color="blackColor">
+    <div class="center" style="position: relative; padding: 15px">
+      <ion-text
+        class="whiteColor20Bold ellipseText"
+        style="-webkit-line-clamp: 1; max-width: 80%"
+      >
+        Post
+      </ion-text>
+      <ion-icon
+        (click)="goBack()"
+        name="arrow-back"
+        color="whiteColor"
+        style="font-size: 24px; position: absolute; left: 5px"
+      ></ion-icon>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="blackColor">
+  <div class="rowAlignCenter" style="margin: 20px 10px">
+    <ion-img
+      src="../../../assets/images/spook.png"
+      class="imageOverflow"
+      style="width: 70px; height: 70px; border-radius: 35px"
+    >
+    </ion-img>
+    <ion-textarea
+      mode="ios"
+      placeholder="Write about your post here"
+      class="whiteColor16Regular textArea"
+      rows="6"
+      [(ngModel)]="about"
+    >
+    </ion-textarea>
+  </div>
+
+  <div>
+    <ion-text class="whiteColor18Bold" style="display: flex; margin: 10px">
+      Select Cover
+    </ion-text>
+    <div class="horizontalScroll" style="padding: 0 5px">
+      <div *ngFor="let item of coverColorsList" style="display: inline-block">
+        <div class="filterOptionsWrapper">
+          <ion-img
+            src="../../../assets/images/ronaldo.png"
+            class="imageOverflow"
+            style="width: 100px; height: 130px; border-radius: 10px"
+          >
+          </ion-img>
+          <div class="filterOverlay" [style.background]="item"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="rowAlignCenter"
+    style="
+      justify-content: space-between;
+      margin: 40px 10px;
+      margin-bottom: 10px;
+    "
+  >
+    <ion-text class="grayColor16Bold" style="flex: 1"> Comment On </ion-text>
+    <ion-toggle
+      mode="ios"
+      class="switch"
+      [(ngModel)]="commentSwitch"
+    ></ion-toggle>
+  </div>
+
+  <div
+    class="rowAlignCenter"
+    style="justify-content: space-between; margin: 10px"
+  >
+    <ion-text class="grayColor16Bold" style="flex: 1">
+      Save to Gallery
+    </ion-text>
+    <ion-toggle
+      mode="ios"
+      class="switch"
+      [(ngModel)]="gallerySwitch"
+    ></ion-toggle>
+  </div>
+</ion-content>
+
+<ion-footer mode="ios" style="background-color: var(--blackColor)">
+  <div (click)="goTo('bottom-tab-bar/home')" class="center button">
+    <ion-text class="whiteColor16Bold"> Post Video </ion-text>
+  </div>
+</ion-footer>

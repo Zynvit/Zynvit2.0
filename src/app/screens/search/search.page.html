@@ -1,0 +1,153 @@
+<ion-header mode="ios" [translucent]="false" class="ion-no-border">
+  <ion-toolbar color="bodyBackColor">
+    <div class="rowAlignCenter searchFieldWrapper">
+      <ion-icon name="search" color="whiteColor" style="font-size: 20px"></ion-icon>
+      <ion-input
+        mode="ios"
+        placeholder="Search hashtag or username"
+        class="whiteColor15Regular textfield"
+        [(ngModel)]="search"
+      ></ion-input>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div style="position: relative">
+    <swiper-container #swiper>
+      <swiper-slide *ngFor="let item of bannerSliderList; let i = index;">
+        <div style="position: relative">
+          <!-- Video -->
+          <div *ngIf="item.playing">
+            <video #videoPlayer width="100%" height="200" controls (ended)="handleVideoEnded()">
+              <source [src]="item.videoUrl" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <!-- Image -->
+          <div *ngIf="!item.playing">
+            <ion-img class="imageOverflow" [src]="item.image" style="width: 100%; height: 200px"></ion-img>
+            <div class="column bannerOverlay">
+              <ion-text class="whiteColor16Bold">{{ item.hasTag }}</ion-text>
+              <ion-text class="whiteColor14Regular" style="margin: 10px 0; line-height: 18px">
+                Now about<br />
+              </ion-text>
+              <div class="createNowButton">
+                <ion-text class="whiteColor16Bold" (click)="handleClick(i)"> Play </ion-text>
+              </div>
+            </div>
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+    <div class="rowAlignCenter pagination">
+      <div *ngFor="let banner of bannerSliderList; let i = index;">
+        <div
+          style="margin: 0 5px"
+          [style.width]="currentBannerIndex === i ? '12px' : '6px'"
+          [style.height]="currentBannerIndex === i ? '12px' : '6px'"
+          [style.border-radius]="currentBannerIndex === i ? '6px' : '3px'"
+          [style.background]="currentBannerIndex === i ? 'var(--whiteColor)' : 'var(--lightGreenColor)'"
+        ></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="position: relative; height: 200px; display: none;" #videoContainer >
+    <video #videoPlayer width="100%" height="200" controls>
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <div style="margin-top: 20px">
+    <div class="rowAlignCenter" style="justify-content: space-between; margin: 10px">
+      <div class="rowAlignCenter" style="flex: 1">
+        <div class="center circle40" style="background-color: var(--blackColor)">
+          <ion-img src="../../../../assets/images/nano.png" style="width: 28px; height: 28px; object-fit: contain"></ion-img>
+        </div>
+        <div class="column" style="flex: 1; margin: 0 10px">
+          <ion-text class="whiteColor15Bold ellipseText" style="-webkit-line-clamp: 1">Nanotechnology</ion-text>
+          <ion-text class="grayColor12Regular" style="margin-top: 3px">108.8k views</ion-text>
+        </div>
+      </div>
+      <div class="rowAlignCenter">
+        <ion-text class="grayColor14Regular">View all</ion-text>
+        <ion-icon name="chevron-forward" color="grayColor" style="font-size: 16px; margin-left: 10px"></ion-icon>
+      </div>
+    </div>
+    <div class="horizontalScroll" style="padding: 0 10px">
+      <div *ngFor="let item of danceLikeProList" style="display: inline-block">
+        <img class="imageOverflow poster" [src]="item.image" />
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 20px">
+    <div class="rowAlignCenter" style="justify-content: space-between; margin: 10px">
+      <div class="rowAlignCenter" style="flex: 1">
+        <div class="center circle40" style="background-color: var(--blackColor)">
+          <ion-img src="../../../../assets/images/robot.png" style="width: 28px; height: 28px; object-fit: contain"></ion-img>
+        </div>
+        <div class="column" style="flex: 1; margin: 0 10px">
+          <ion-text class="whiteColor15Bold ellipseText" style="-webkit-line-clamp: 1">Infotechnology</ion-text>
+          <ion-text class="grayColor12Regular" style="margin-top: 3px">159.8k views</ion-text>
+        </div>
+      </div>
+      <div class="rowAlignCenter">
+        <ion-text class="grayColor14Regular">View all</ion-text>
+        <ion-icon name="chevron-forward" color="grayColor" style="font-size: 16px; margin-left: 10px"></ion-icon>
+      </div>
+    </div>
+    <div class="horizontalScroll" style="padding: 0 10px">
+      <div *ngFor="let item of laughOutLoudList" style="display: inline-block">
+        <img class="imageOverflow poster" [src]="item.image" />
+      </div>
+    </div>
+  </div>
+
+  <div style="margin: 20px 0">
+    <div class="rowAlignCenter" style="justify-content: space-between; margin: 10px">
+      <div class="rowAlignCenter" style="flex: 1">
+        <div class="center circle40" style="background-color: var(--blackColor)">
+          <ion-img src="../../../../assets/images/cogno.png" style="width: 28px; height: 28px; object-fit: contain"></ion-img>
+        </div>
+        <div class="column" style="flex: 1; margin: 0 10px">
+          <ion-text class="whiteColor15Bold ellipseText" style="-webkit-line-clamp: 1">Biotechnology</ion-text>
+          <ion-text class="grayColor12Regular" style="margin-top: 3px">231.9k views</ion-text>
+        </div>
+      </div>
+      <div class="rowAlignCenter">
+        <ion-text class="grayColor14Regular">View all</ion-text>
+        <ion-icon name="chevron-forward" color="grayColor" style="font-size: 16px; margin-left: 10px"></ion-icon>
+      </div>
+    </div>
+    <div class="horizontalScroll" style="padding: 0 10px">
+      <div *ngFor="let item of foodList" style="display: inline-block">
+        <img class="imageOverflow poster" [src]="item.image" />
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 20px">
+    <div class="rowAlignCenter" style="justify-content: space-between; margin: 10px">
+      <div class="rowAlignCenter" style="flex: 1">
+        <div class="center circle40" style="background-color: var(--blackColor)">
+          <ion-img src="../../../../assets/images/quantum.png" style="width: 28px; height: 28px; object-fit: contain"></ion-img>
+        </div>
+        <div class="column" style="flex: 1; margin: 0 10px">
+          <ion-text class="whiteColor15Bold ellipseText" style="-webkit-line-clamp: 1">Cognotechnology</ion-text>
+          <ion-text class="grayColor12Regular" style="margin-top: 3px">159.8k views</ion-text>
+        </div>
+      </div>
+      <div class="rowAlignCenter">
+        <ion-text class="grayColor14Regular">View all</ion-text>
+        <ion-icon name="chevron-forward" color="grayColor" style="font-size: 16px; margin-left: 10px"></ion-icon>
+      </div>
+    </div>
+    <div class="horizontalScroll" style="padding: 0 10px">
+      <div *ngFor="let item of infotechnologyList" style="display: inline-block">
+        <img class="imageOverflow poster" [src]="item.image" />
+      </div>
+    </div>
+  </div>
+</ion-content>
